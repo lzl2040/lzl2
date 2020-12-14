@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "利用Git拉取远程仓库"
+title:  利用Git拉取远程仓库
 date:   2020-12-13 15:10:12 +0530
 categories: Git Github
 ---
@@ -15,15 +15,15 @@ categories: Git Github
 git remote add origin git@github.com:yourName/repositoryname.git
 git remote add origin https://github.com/yourName/repositoryname.git
 ```
-# 5.从远程仓库拉取文件
+## 5.从远程仓库拉取文件
 ```
 git pull origin master
 ```
-# 6.查看工作目录状态
+## 6.查看工作目录状态
 ```
 git status
 ```
-# 7.提交更改，添加备注信息
+## 7.提交更改，添加备注信息
 ```
 git commit -m "备注信息"
 注意：若第6步的信息中有以下情况：
@@ -32,7 +32,7 @@ git commit -m "备注信息"
 2.Changes not staged for commit
 使用 git commit -am "备注信息" 解决
 ```
-# 8.将本地文件push到远程仓库
+## 8.将本地文件push到远程仓库
 ```
 git push origin master
 ```
