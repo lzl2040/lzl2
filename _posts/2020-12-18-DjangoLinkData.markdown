@@ -26,4 +26,5 @@ phpstudy中的Mysql要选择5.7.X版本，选择其他版本数据库导入时�
 
 ![如图](https://gitee.com/lzl2040/pic-store/raw/master/jekyll-2020-12-18-DjangoLink/link-1.png)  
 这样我们就成功连接上数据库了！！！花了我好久的时间...
-[phpstudy]:https://www.xp.cn/download.html
+
+[phpstudy]: https://www.xp.cn/download.html
