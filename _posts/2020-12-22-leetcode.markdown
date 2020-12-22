@@ -1,0 +1,47 @@
+---
+layout: post
+title:  LeetCode日志
+date:   2020-12-22 12:17:11 +0530
+categories: 算法设计 LeetCode
+---
+-------------------2020-12-22------------------------
+今天是LeetCode刷题的第二天，心态已经被搞炸，简单题也这么难的吗？呜呜，还是自己太菜了
+
+## 无重复字符的最长字串
+给定一个字符串，请你找出其中不含有重复字符的 最长子串的长度。  
+```
+输入: s = "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+```
+解题思路：其实这题不是很难，在做此题的时候目标也很明确，遍历无重复字符字串(start-end)，找出是否有与新加进来的字符(ch)相等的地方  
+做此题时，问题主要出在start在发现有重复字串后的取值为多少，以及count的值
+代码如下：
+```cpp
+int lengthOfLongestSubstring(char * s){
+    	int l = strlen(s);
+        if(l==0)
+        return 0;
+        char ch;
+	int start = 0,end=0,count = 0,maxL = 0,i;
+	while(start<l&&end<l)
+	{
+		ch = s[end];
+		for(i=start;i<end;i++)
+		{			
+			if(ch==s[i])//出现相等则重新开始 
+			{
+				start = i + 1;
+				count = end-start;
+				break;
+			}
+		}
+		count++;//没有相同的地方则长度+1 
+		end++;
+		if(maxL<count)
+			maxL = count;
+	}
+    return maxL;
+}
+```
+
