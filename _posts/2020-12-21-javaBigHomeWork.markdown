@@ -65,3 +65,77 @@ public music(){
 [](https://gitee.com/lzl2040/pic-store/raw/master/jekyll-2020-12-18-DjangoLink/2020-12-23-01.png)  
 [](https://gitee.com/lzl2040/pic-store/raw/master/jekyll-2020-12-18-DjangoLink/2020-12-23-02.png)  
 但此方法有个弊端，就是每次新建另一个项目时需要重新导入
+
+-------------------------------1-6日----------------------------------------  
+今天下午终于把那个mp3插件给搞好了，CSDN都是垃圾，直接在代码里面注册mp3插件就好。呜呜，害我浪费了这么多时间找自己的错误，结果啥都没有找到。  
+这个很简单，只需几行代码，jmf不能播放mp3的问题就解决啦。CSDN上都是什么花里胡哨，浪费老子时间。。。。 当然，这个前提是你得把JMF环境配好，  
+这个[JMF安装教程]还是不错的,可拿来借鉴。
+测试代码：
+```java
+package musicPlayer;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;  
+import java.util.Calendar;
+
+import javax.media.CannotRealizeException;
+import javax.media.Format;  
+import javax.media.Manager;
+import javax.media.NoPlayerException;
+import javax.media.Player;  
+import javax.media.PlugInManager;  
+import javax.media.format.AudioFormat;  
+ 
+public class Test {  
+ 
+    /**  
+     * @param args  
+     * @throws Exception  
+     */ 
+    public static void main(String[] args) throws Exception {  
+        Test.Play("D:\\My Music\\叶里、苑舍 - 葬仙-记狠人大帝.mp3");  
+    }  
+ 
+    // 播放音频文件  
+    public static void Play(String fileurl) {  
+        try {  
+            Format inMp3 = new AudioFormat(AudioFormat.MPEGLAYER3);  
+            Format outLinear = new AudioFormat(AudioFormat.LINEAR);  
+            //注册mp3插件，对，就是这么简单
+            PlugInManager.addPlugIn(  
+                    "com.sun.media.codec.audio.mp3.JavaDecoder",  
+                    new Format[] { inMp3 }, new Format[] { outLinear },  
+                    PlugInManager.CODEC);  
+ 
+            try {
+            	 File file = new File(fileurl);
+            	   Player p=Manager.createRealizedPlayer(file.toURI().toURL());
+            	   p.prefetch();
+            	   p.start();
+            	  } catch (NoPlayerException e) {
+            	   // TODO Auto-generated catch block
+            	   e.printStackTrace();
+            	  } catch (CannotRealizeException e) {
+            	   // TODO Auto-generated catch block
+            	   e.printStackTrace();
+            	  } catch (MalformedURLException e) {
+            	   // TODO Auto-generated catch block
+            	   e.printStackTrace();
+            	  } catch (IOException e) {
+            	   // TODO Auto-generated catch block
+            	   e.printStackTrace();
+            	  }
+            
+    }catch (Exception e) {
+		// TODO: handle exception
+	}
+    }
+ }
+```
+好了，接下来就是播放器的点哪播哪实现了，还有示波器，均衡器，还没思路呢。呜呜。。  
+
+
+
+[JMF安装教程]:https://blog.csdn.net/baidu_38760069/article/details/84558656?utm_medium=distribute.pc_relevant_bbs_down.none-task--2~all~first_rank_v2~rank_v29-4.nonecase&depth_1-utm_source=distribute.pc_relevant_bbs_down.none-task--2~all~first_rank_v2~rank_v29-4.nonecase
